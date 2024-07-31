@@ -7,6 +7,7 @@ and returns a list representing the dimensions (shape) of the matrix. The
 shape is determined by the number of elements in each dimension of the matrix.
 """
 
+
 def matrix_shape(matrix):
     """
     Function that calculates the shape of a matrix.
