@@ -4,8 +4,6 @@ Module for 6-howdy_partner.py.
 Contains a function that concatenates two arrays.
 """
 
-
-
 def cat_arrays(arr1, arr2):
     """
     Function that concatenates two arrays.
