@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 """
 Module for 6-howdy_partner.py.
 Contains a function that concatenates two arrays.
