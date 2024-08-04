@@ -5,6 +5,7 @@ Module 10-ill_use_my_scale
 Provides a function np_shape to get the shape of a numpy matrix.
 """
 
+
 def np_shape(matrix):
     """
     Returns the shape of a numpy matrix.
