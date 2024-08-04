@@ -15,8 +15,9 @@ def mat_mul(mat1, mat2):
         mat2 (list of list of int/float): The second matrix.
 
     Returns:
-        list of list of int/float or None: The result of the matrix multiplication,
-        or None if the matrices cannot be multiplied due to incompatible dimensions.
+        list of list of int/float or None: The result of the matrix
+        multiplication, or None if the matrices cannot be multiplied
+        due to incompatible dimensions.
     """
     if len(mat1[0]) != len(mat2):
         return None
