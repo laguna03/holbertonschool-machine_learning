@@ -5,6 +5,7 @@ Module 8-ridin_bareback
 Provides a function mat_mul to perform matrix multiplication.
 """
 
+
 def mat_mul(mat1, mat2):
     """
     Performs matrix multiplication of two 2D lists (matrices).
