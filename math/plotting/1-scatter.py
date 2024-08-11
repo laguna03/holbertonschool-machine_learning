@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 This module contains a function to plot a simple scatter graph using Matplotlib.
-The graph plots the cubic values of integers from 0 to 10.
+The graph plots men's height vs weight.
 """
 
 import numpy as np
@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 
 def scatter():
     """
-    Plots a scatter graph of the cubic values of integers from 0 to 10.
+    Plots a scatter graph of men's height vs weight using generated data.
     """
 
     mean = [69, 0]
@@ -21,9 +21,8 @@ def scatter():
     plt.figure(figsize=(6.4, 4.8))
 
     plt.scatter(x, y, c='magenta', s=10)
-    plt.title
+    plt.title("Men's Height vs Weight")
     plt.xlabel('Height (in)')
     plt.ylabel('Weight (lbs)')
-    plt.title('Men\'s Height vs Weight')
     plt.show()
     return
