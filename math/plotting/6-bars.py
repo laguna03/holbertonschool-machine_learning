@@ -13,18 +13,14 @@ def bars():
     colors = ['r', 'yellow', '#ff8000', '#ffe5b4']
     width = 0.5
 
-    # Stacking the bars
     bottom = np.zeros(3)
     for i in range(len(fruit)):
         plt.bar(names, fruit[i], width, color=colors[i], bottom=bottom)
         bottom += fruit[i]
 
-    # Setting labels, title, and legend
     plt.ylabel('Quantity of Fruit')
     plt.title('Number of Fruit per Person')
     plt.legend(['apples', 'bananas', 'oranges', 'peaches'])
-
-    # Setting the y-axis range and ticks
     plt.ylim(0, 80)
     plt.yticks(np.arange(0, 81, 10))
 
