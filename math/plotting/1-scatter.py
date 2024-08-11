@@ -7,6 +7,7 @@ The graph plots the cubic values of integers from 0 to 10.
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def scatter():
     """
     Plots a scatter graph of the cubic values of integers from 0 to 10.
