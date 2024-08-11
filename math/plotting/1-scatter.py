@@ -1,29 +1,26 @@
 #!/usr/bin/env python3
-"""
-This module contains a function to plot a scatter graph of men's height vs weight.
-"""
-
+"""Function that plots a scatter plot of"""
 import numpy as np
 import matplotlib.pyplot as plt
 
 
 def scatter():
-    """
-    Plots a scatter graph of men's height vs weight using generated data.
-    """
+    """Plot a scatter"""
 
-    mean = [69, 0]  # Mean values for height and weight
-    cov = [[15, 8], [8, 15]]  # Covariance matrix
-    np.random.seed(5)  # Seed for reproducibility
+    mean = [69, 0]
+    cov = [[15, 8], [8, 15]]
+    np.random.seed(5)
     x, y = np.random.multivariate_normal(mean, cov, 2000).T
-    y += 180  # Adjust weight data to realistic values
+    y += 180
+    plt.figure(figsize=(6.4, 4.8))
 
-    plt.figure(figsize=(6.4, 4.8))  # Set the figure size
+    # Scatter plot
+    plt.scatter(x, y, c='magenta')
 
-    plt.scatter(x, y, c='magenta', s=10)  # Scatter plot with magenta points
-    plt.title("Men's Height vs Weight")  # Set the title
-    plt.xlabel('Height (in)')  # Set the x-axis label
-    plt.ylabel('Weight (lbs)')  # Set the y-axis label
-    plt.show()  # Display the plot
+    # Set labels name
+    plt.xlabel('Height (in)')
+    plt.ylabel('Weight (lbs)')
+    plt.title('Men\'s Height vs Weight')
 
-    return
+    # Display the plot
+    plt.show()
