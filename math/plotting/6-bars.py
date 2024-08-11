@@ -5,7 +5,10 @@ import matplotlib.pyplot as plt
 
 
 def bars():
-    """Plot a stacked bar graph representing the number of fruit each person possesses."""
+    """
+    Plot a stacked bar graph representing the number of fruit each person
+    possesses.
+    """
     np.random.seed(5)
     fruit = np.random.randint(0, 20, (4, 3))
 
