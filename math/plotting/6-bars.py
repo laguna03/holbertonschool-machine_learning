@@ -10,7 +10,7 @@ def bars():
     fruit = np.random.randint(0, 20, (4, 3))
 
     names = ['Farrah', 'Fred', 'Felicia']
-    colors = ['r', 'yellow', '#ff8000', '#ffe5b4']  # Colors for apples, bananas, oranges, peaches
+    colors = ['r', 'yellow', '#ff8000', '#ffe5b4']
     width = 0.5
 
     # Stacking the bars
