@@ -76,7 +76,8 @@ class Decision_Tree:
 
     Attributes:
         max_depth (int): Maximum allowed depth of the tree.
-        min_pop (int): Minimum population of data points required to split a node.
+        min_pop (int): Minimum population of data points
+          required to split a node.
         rng (Generator): Random number generator instance.
         root (Node): The root node of the decision tree.
     """
