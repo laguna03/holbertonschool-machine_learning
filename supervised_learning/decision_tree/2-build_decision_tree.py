@@ -29,7 +29,6 @@ class Node:
         self.right_child = right_child
         self.is_leaf = False
         self.is_root = is_root
-        self.sub_population = None
         self.depth = depth
 
     def max_depth_below(self):
@@ -41,16 +40,26 @@ class Node:
                        self.right_child.max_depth_below())
 
     def count_nodes_below(self, only_leaves=False):
-        """Counts the number of nodes below this node,
-          optionally counting only leaves."""
+        """Counts the number of nodes below this node, optionally counting only leaves."""
         if self.is_leaf:
             return 1
         left_count = self.left_child.count_nodes_below(only_leaves)
         right_count = self.right_child.count_nodes_below(only_leaves)
-
         if only_leaves:
             return left_count + right_count
         return 1 + left_count + right_count
+
+    def __str__(self, level=0):
+        """Generates a string representation of the decision tree."""
+        indent = "    " * level
+        if self.is_leaf:
+            return f"{indent}-> leaf [value={self.value}]"
+        else:
+            result = f"{indent}node [feature={self.feature}, threshold={self.threshold}]\n"
+            result += self.left_child.__str__(level + 1) + "\n"
+            result += self.right_child.__str__(level + 1)
+            return result
+
 
 class Leaf(Node):
     """Represents a leaf node in the decision tree."""
@@ -60,36 +69,15 @@ class Leaf(Node):
         self.is_leaf = True
         self.depth = depth
 
-    def max_depth_below(self):
-        """Returns the depth of this leaf node."""
-        return self.depth
-
-    def count_nodes_below(self, only_leaves=False):
-        """Counts the number of nodes below this leaf."""
-        return 1
-
-    def left_child_add_prefix(self, text):
-        lines = text.split("\n")
-        new_text = "    +--" + lines[0] + "\n"
-        for x in lines[1:]:
-            new_text += ("    |  " + x) + "\n"
-        return (new_text)
-
-    def __str__(self):
-        """Returns a string representation of the leaf node."""
-        return (f"-> leaf [value={self.value}]")
+    def __str__(self, level=0):
+        """Generates a string representation of the leaf node."""
+        indent = "    " * level
+        return f"{indent}-> leaf [value={self.value}]"
 
 
 class Decision_Tree:
     """
     Implements a decision tree classifier.
-
-    Attributes:
-        max_depth (int): Maximum allowed depth of the tree.
-        min_pop (int): Minimum population of data points
-          required to split a node.
-        rng (Generator): Random number generator instance.
-        root (Node): The root node of the decision tree.
     """
     def __init__(self, max_depth=10, min_pop=1, seed=0,
                  split_criterion="random", root=None):
@@ -98,12 +86,8 @@ class Decision_Tree:
             self.root = root
         else:
             self.root = Node(is_root=True)
-        self.explanatory = None
-        self.target = None
         self.max_depth = max_depth
         self.min_pop = min_pop
-        self.split_criterion = split_criterion
-        self.predict = None
 
     def depth(self):
         """Calculates and returns the depth of the tree."""
@@ -113,14 +97,6 @@ class Decision_Tree:
         """Counts the number of nodes in the tree."""
         return self.root.count_nodes_below(only_leaves=only_leaves)
 
-    def left_child_add_prefix(self,text):
-        lines=text.split("\n")
-        new_text="    +--"+lines[0]+"\n"
-        for x in lines[1:] :
-            new_text+=("    |  "+x)+"\n"
-        return new_text
-
-
     def __str__(self):
-        """Returns a string representation of the decision tree"""
-        return self.root.__str__()
+        """Returns a string representation of the decision tree."""
+        return str(self.root)
