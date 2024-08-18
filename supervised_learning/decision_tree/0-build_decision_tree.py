@@ -3,13 +3,16 @@
 This module implements a simple Decision Tree classifier.
 
 Classes:
-    Node: Represents a node in the decision tree, which can be either a decision node or a leaf.
-    Leaf: Inherits from Node and represents a leaf in the decision tree, storing the predicted value.
+    Node: Represents a node in the decision tree,
+      which can be either a decision node or a leaf.
+    Leaf: Inherits from Node and represents a leaf in the decision tree,
+      storing the predicted value.
     Decision_Tree: Implements a decision tree classifier that supports growing a tree, calculating
                    its depth, and making predictions.
 
 Usage:
-    This module allows for training a decision tree classifier on data, and retrieving information
+    This module allows for training a decision tree classifier on data,
+      and retrieving information
     such as the depth of the tree and predictions.
 """
 import numpy as np
@@ -36,6 +39,7 @@ class Node:
             return max(self.left_child.max_depth_below(),
                        self.right_child.max_depth_below())
 
+
 class Leaf(Node):
     """Represents a leaf node in the decision tree."""
     def __init__(self, value, depth=None):
@@ -47,6 +51,7 @@ class Leaf(Node):
     def max_depth_below(self):
         """Returns the depth of this leaf node."""
         return self.depth
+
 
 class Decision_Tree:
     """
