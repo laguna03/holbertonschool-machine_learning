@@ -1,1 +1,1 @@
-Decision trees and random forest
+Supervised learning
