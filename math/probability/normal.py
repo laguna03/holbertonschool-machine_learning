@@ -111,4 +111,3 @@ class Normal:
         er = (2 * (x - x_3 + x_5 - x_7 + x_9) / (pi ** 0.5))
         cdf_val = (1 + er) / 2
         return cdf_val
-holbertonschool-machine_learning/math/probability/normal.py at main · Mxnu07/holbertonschool-machine_learning
