@@ -1,25 +1,3 @@
-Skip to content
-Navigation Menu
-
-Code
-Issues
-Pull requests
-Actions
-Projects
-Security
-holbertonschool-machine_learning/math/probability
-/normal.py
-Mxnu07
-Mxnu07
-probability tasks
-4062d44
- ·
-last week
-91 lines (84 loc) · 2.93 KB
-
-Code
-
-Blame
 #!/usr/bin/env python3
 """This module contains the normal distribution class
 """
