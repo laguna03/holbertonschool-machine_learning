@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 """This modlue containes the function viterbi that calculates the most likely
 sequence of hidden states for a hidden markov model"""
