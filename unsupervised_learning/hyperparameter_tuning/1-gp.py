@@ -51,3 +51,37 @@ class GaussianProcess:
         # np.exp(-0.5 / self.l**2 * sqdist) is
         #               the exponential term of the kernel
         return self.sigma_f**2 * np.exp(-0.5 / self.l**2 * sqdist)
+
+    def predict(self, X_s):
+        """This method preedicts the mean and standard deviation of points
+        in a Gaussian process
+        Args:
+            X_s: numpy.ndarray of shape (s, 1) containing all of the points
+                 whose mean and standard deviation should be calculated
+        Returns: mu, sigma
+                 mu: numpy.ndarray of shape (s,) containing the mean for each
+                     point in X_s, respectively
+                 sigma: numpy.ndarray of shape (s,) containing the variance
+                        for each point in X_s, respectively
+        """
+        # Step 1: Calculate the covariance kernel matrix between X_s and X
+        #         and between X_s and X_s
+        K_s = self.kernel(self.X, X_s)
+        # print(f"K_s: {K_s}")
+        K_ss = self.kernel(X_s, X_s)
+        # print(f"K_ss: {K_ss}")
+        # Calculate the inverse of the covariance kernel matrix
+        # np.linalg.inv() calculates the inverse of a matrix
+        K_inv = np.linalg.inv(self.K)
+
+        # Step 2: Calculate the mean and standard deviation
+        # .T.dot is the dot product of the transpose of K_s and K_inv
+        # reshape(-1) reshapes the column vector to a row vector
+        mu = K_s.T.dot(K_inv).dot(self.Y).reshape(-1)
+        # print(f"mu: {mu}")
+        # K_ss - K_s.T.dot(K_inv).dot(K_s) calculates the diagonal of the
+        #       covariance kernel matrix between X_s and X_s
+        # np.diag(K_ss - K_s.T.dot(K_inv).dot(K_s)) returns the diagonal
+        sigma = np.diag(K_ss - K_s.T.dot(K_inv).dot(K_s))
+
+        return mu, sigma

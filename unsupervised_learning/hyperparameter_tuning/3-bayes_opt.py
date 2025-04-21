@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 """This modlue contain the ByseianOptimization class
     That erforms Byseian optimization on a noiseless
