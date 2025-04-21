@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 """This modlue containes the function backward that performs the backward
 algorithm for a hidden markov model"""

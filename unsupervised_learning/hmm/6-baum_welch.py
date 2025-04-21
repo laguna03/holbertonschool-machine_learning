@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 """This mdlue contains the function baum_welch that performs the Baum-Welch
 algorithm for a hidden markov model"""
