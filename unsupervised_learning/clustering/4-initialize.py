@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 """This modlue initializes variables fr a Gaussian
 Mixture Model
