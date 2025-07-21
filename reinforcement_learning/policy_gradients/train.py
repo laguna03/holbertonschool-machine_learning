@@ -1,39 +1,51 @@
 #!/usr/bin/env python3
 """
-Compute the Monte-Carlo policy gradient
+Training loop for MC policy gradient
 """
 import numpy as np
+policy_gradient = __import__('policy_gradient').policy_gradient
 
 
-def policy(matrix, weight):
+def train(env, nb_episodes, alpha=0.000045, gamma=0.98, show_result=False):
     """
-    Computes a stochastic policy by taking a weighted combination of the
-    state and weight matrices and applying a softmax function.
+    Train the policy using Monte-Carlo policy gradient.
     Args:
-        matrix: a state matrix with shape (observations, actions)
-        weight: a weight matrix of shape (observations, actions)
-    Returns:
-        the policy matrix of shape (observations, actions
+        env: initial environment
+        nb_episodes: number of episodes used for training
+        alpha: the learning rate
+        gamma: the discount factor
+        show_result: if True render the environment every 1000 episodes
+    Returns: list of the scores obtained after each episode
     """
-    weighted_states = (matrix @ weight)
-    e_x = np.exp(weighted_states - np.max(weighted_states))
-    return e_x / np.sum(e_x)
+    weights = np.random.rand(
+        env.observation_space.shape[0],
+        env.action_space.n
+    )
+    scores = []
 
+    for episode in range(nb_episodes):
+        state = env.reset()[0]
+        episode_gradients = []
+        episode_rewards = []
+        done = False
 
-def policy_gradient(state, weight):
-    """
-    Computes the Monte-Carlo policy gradient based on a state and a
-    weight matrix.
-    Args:
-        state: the current observation of the environment
-        weight: the current weight matrix
-    Returns:
-        the action and the gradient (in this order)
-    """
-    action_probs = policy(state, weight)
-    action = np.random.choice(len(action_probs), p=action_probs)
-    d_softmax = action_probs.copy()
-    d_softmax[action] -= 1
-    grad = -np.outer(state, d_softmax)
+        if show_result and episode % 1000 == 0:
+            env.render()
 
-    return action, grad
+        while not done:
+            action, grad = policy_gradient(state, weights)
+            next_state, reward, terminated, truncated, _ = env.step(action)
+            episode_rewards.append(reward)
+            episode_gradients.append(grad)
+            state = next_state
+            done = terminated or truncated
+
+        score = sum(episode_rewards)
+        scores.append(score)
+        print(f"Episode: {episode} Score: {score}")
+
+        for i, gradient in enumerate(episode_gradients):
+            reward = sum([R * gamma ** R for R in episode_rewards[i:]])
+            weights += alpha * gradient * reward
+
+    return scores
